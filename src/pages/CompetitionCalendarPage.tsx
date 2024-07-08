@@ -4,6 +4,8 @@ import { getCompetitionMatches } from "../services/footbalApi";
 import CustomSpinner from "../components/Spinner";
 import { useEffect } from "react";
 import CompetitionList from "../components/CompetitionList";
+import CustomBreadcrumbs from "../components/Breadcrumbs";
+import getRoutes from "../routes";
 
 const CompetitionCalendar = () => {
   const { id } = useParams();
@@ -18,6 +20,7 @@ const CompetitionCalendar = () => {
 
   return (
     <Container>
+      <CustomBreadcrumbs type={'Лиги'} name={data.competition.name} path={getRoutes.competitionsPagePath()}/>
       <CompetitionList matches={data.matches}/>
     </Container>
   );
