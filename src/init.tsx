@@ -2,7 +2,7 @@ import i18next from "i18next";
 import { Provider } from "react-redux";
 import { initReactI18next, I18nextProvider } from "react-i18next";
 import resources from "./locales/index.ts";
-import App from "./components/App.tsx";
+import App from "./pages/App.tsx";
 import rollbarConfig from "./rollbar/rollbarConfig.ts";
 import { Provider as RollbarProvider, ErrorBoundary } from "@rollbar/react";
 import store from "./services/index.ts";

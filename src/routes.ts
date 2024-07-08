@@ -1,4 +1,6 @@
 export default {
   competitionsPagePath: () => "/competitions",
-  teamsPagePath: () => "/teams"
+  teamsPagePath: () => "/teams",
+  competitionCalendarPagePath: (id: number ) => `/competition/${id}`,
+  teamCalendarPagePath: (id: number) => `/team/${id}`,
 };

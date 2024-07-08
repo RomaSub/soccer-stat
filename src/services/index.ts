@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { teamsApi } from "./teamsApi";
+import { footballApi } from "./footbalApi";
 
 export default configureStore({
   reducer: {
-    [teamsApi.reducerPath]: teamsApi.reducer
+    [footballApi.reducerPath]: footballApi.reducer
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(teamsApi.middleware)
+    getDefaultMiddleware().concat(footballApi.middleware)
 });

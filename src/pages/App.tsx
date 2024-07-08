@@ -4,6 +4,8 @@ import Header from "./Header";
 import NotFound from "./NotFoundPage";
 import Teams from "./TeamsPage";
 import Competitions from "./CompetitionsPage";
+import CompetitionCalendarPage from "./CompetitionCalendarPage";
+import TeamCalendarPage from "./TeamCalendarPage";
 
 const App = () => {
   return (
@@ -17,6 +19,11 @@ const App = () => {
               path={getRoutes.competitionsPagePath()}
               element={<Competitions />}
             />
+            <Route
+              path="/competition/:id"
+              element={<CompetitionCalendarPage />}
+            />
+            <Route path="/team/:id" element={<TeamCalendarPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
