@@ -9,7 +9,7 @@ const ru = {
       POSTPONED: "Отложен",
       SUSPENDED: "Приостановлен",
       CANCELED: "Отменен",
-      TIMED: 'Приурочено',
+      TIMED: "Приурочено"
     },
     notFound: "Страница не найдена",
     competitions: "Лиги",

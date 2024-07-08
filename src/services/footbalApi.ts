@@ -21,12 +21,21 @@ export const footballApi = createApi({
       query: () => "competitions"
     }),
     getCompetitionMatches: builder.query({
-      query: (id) => `competitions/${id}/matches`
+      query: ({ id, dateFrom, dateTo }) => {
+        let url = `competitions/${id}/matches`;
+        if (dateFrom && dateTo) url += `?dateFrom=${dateFrom}&dateTo=${dateTo}`;
+        return url;
+      }
     })
   })
 });
 
-const { useGetTeamsQuery, useGetCompetitionsQuery, useGetCompetitionMatchesQuery, useGetTeamMatchesQuery} = footballApi;
+const {
+  useGetTeamsQuery,
+  useGetCompetitionsQuery,
+  useGetCompetitionMatchesQuery,
+  useGetTeamMatchesQuery
+} = footballApi;
 
 export {
   useGetTeamsQuery as getTeams,
@@ -34,3 +43,7 @@ export {
   useGetCompetitionMatchesQuery as getCompetitionMatches,
   useGetTeamMatchesQuery as getTeamMatches
 };
+//
+//    getCompetitionMatches: builder.query({
+//  query: id => `competitions/${id}/matches`
+//})
