@@ -1,4 +1,4 @@
-import { Form, Button, InputGroup, Row, Col } from "react-bootstrap";
+import { Form,  InputGroup, Row, Col } from "react-bootstrap";
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
   return (
@@ -10,9 +10,9 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />
-          <Button variant="outline-secondary" id="button-addon2">
+          <InputGroup.Text  >
             <i className="bi bi-search"></i>
-          </Button>
+          </InputGroup.Text>
         </InputGroup>
       </Col>
     </Row>

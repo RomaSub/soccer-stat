@@ -43,7 +43,3 @@ export {
   useGetCompetitionMatchesQuery as getCompetitionMatches,
   useGetTeamMatchesQuery as getTeamMatches
 };
-//
-//    getCompetitionMatches: builder.query({
-//  query: id => `competitions/${id}/matches`
-//})
