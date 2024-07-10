@@ -1,0 +1,27 @@
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: Stop and remove old container (if exists)
+      community.docker.docker_container:
+        name: soccer-stat
+        state: absent
+
+    - name: Remove old Docker image
+      community.docker.docker_image:
+        name: rommaa/soccer-stat
+        tag: latest
+        force_absent: yes
+        state: absent
+
+    - name: Pull Docker image
+      community.docker.docker_image:
+        name: rommaa/soccer-stat
+        tag: latest
+        source: pull
+
+    - name: Run new Docker container
+      community.docker.docker_container:
+        name: soccer-stat
+        image: rommaa/soccer-stat:latest
+        restart_policy: always
