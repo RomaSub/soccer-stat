@@ -30,7 +30,7 @@ jobs:
           tags: ${{ env.TEST_TAG }}
 
       # - run: make test
-      - run: cd /app && make lint
+      - run: docker run --rm ${{ env.TEST_TAG }} npm lint
 
       - name: Build and push app
         uses: docker/build-push-action@v2
