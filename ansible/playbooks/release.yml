@@ -1,7 +1,6 @@
 - hosts: all
   become: yes
   tasks:
-
     - name: Stop and remove old container (if exists)
       community.docker.docker_container:
         name: soccer-stat
