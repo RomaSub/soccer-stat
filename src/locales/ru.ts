@@ -13,7 +13,9 @@ const ru = {
     },
     notFound: "Страница не найдена",
     competitions: "Лиги",
-    teams: "Команды"
+    teams: "Команды",
+    matches: "Матчи",
+    search: "Поиск"
   }
 };
 

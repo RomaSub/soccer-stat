@@ -5,6 +5,14 @@ import { getCompetitions } from "../services/footbalApi";
 import CustomSpinner from "../components/Spinner";
 import { useState } from "react";
 
+interface League {
+  id: number;
+  name: string;
+  area: {
+    name: string;
+  };
+}
+
 const Competitions = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading } = getCompetitions({});
@@ -13,7 +21,7 @@ const Competitions = () => {
 
   const filteredCompetitions = searchTerm
     ? data.competitions.filter(
-        league =>
+        (league: League) =>
           league.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           league.area.name.toLowerCase().includes(searchTerm.toLowerCase())
       )
@@ -23,7 +31,7 @@ const Competitions = () => {
     <Container>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Row>
-        {filteredCompetitions.map((league, index) => (
+        {filteredCompetitions.map((league: League, index: number) => (
           <Col key={index} xs={12} md={6} lg={4}>
             <LeagueCard
               id={league.id}

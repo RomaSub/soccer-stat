@@ -8,7 +8,12 @@ interface CustomPaginationProps {
   setCurrentPage: (page: number) => void;
 }
 
-const CustomPagination: React.FC<CustomPaginationProps> = ({ pageSize, itemsCount, currentPage, setCurrentPage }) => {
+const CustomPagination: React.FC<CustomPaginationProps> = ({
+  pageSize,
+  itemsCount,
+  currentPage,
+  setCurrentPage
+}) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
   const isPaginationShown = pagesCount > 1;
   const isCurrentPageFirst = currentPage === 1;
@@ -48,9 +53,14 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({ pageSize, itemsCoun
     const pageNumber = index + 1;
     const isPageNumberFirst = pageNumber === 1;
     const isPageNumberLast = pageNumber === pagesCount;
-    const isCurrentPageWithinTwoPageNumbers = Math.abs(pageNumber - currentPage) <= 2;
+    const isCurrentPageWithinTwoPageNumbers =
+      Math.abs(pageNumber - currentPage) <= 2;
 
-    if (isPageNumberFirst || isPageNumberLast || isCurrentPageWithinTwoPageNumbers) {
+    if (
+      isPageNumberFirst ||
+      isPageNumberLast ||
+      isCurrentPageWithinTwoPageNumbers
+    ) {
       isPageNumberOutOfRange = false;
       return (
         <Pagination.Item
@@ -75,9 +85,15 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({ pageSize, itemsCoun
     <>
       {isPaginationShown && (
         <Pagination>
-          <Pagination.Prev onClick={onPreviousPageClick} disabled={isCurrentPageFirst} />
+          <Pagination.Prev
+            onClick={onPreviousPageClick}
+            disabled={isCurrentPageFirst}
+          />
           {pageNumbers}
-          <Pagination.Next onClick={onNextPageClick} disabled={isCurrentPageLast} />
+          <Pagination.Next
+            onClick={onNextPageClick}
+            disabled={isCurrentPageLast}
+          />
         </Pagination>
       )}
     </>

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 
-const DateFilter = ({ onDateChange }) => {
+interface DateFilterProps {
+  onDateChange: (from: string, to: string) => void;
+}
+
+const DateFilter: React.FC<DateFilterProps> = ({ onDateChange }) => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
 

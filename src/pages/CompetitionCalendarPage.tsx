@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { getCompetitionMatches } from "../services/footbalApi";
 import CustomSpinner from "../components/Spinner";
 import { useState } from "react";
@@ -9,6 +10,7 @@ import CustomBreadcrumbs from "../components/Breadcrumbs";
 import getRoutes from "../routes";
 
 const CompetitionCalendar = () => {
+  const { t } = useTranslation();
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const { id } = useParams();
@@ -18,19 +20,19 @@ const CompetitionCalendar = () => {
     dateFrom,
     dateTo
   });
-  
-  if (isError) return <div>{status}</div>
+
+  if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
   if (isLoading) return <CustomSpinner />;
 
   return (
     <Container>
       <CustomBreadcrumbs
-        type={"Лиги"}
+        type={t("competitions")}
         name={data.competition.name}
         path={getRoutes.competitionsPagePath()}
       />
-      <h3 className="mb-3">Матчи</h3>
+      <h3 className="mb-3">{t("matches")}</h3>
       <DateFilter
         onDateChange={(from, to) => {
           setDateFrom(from);

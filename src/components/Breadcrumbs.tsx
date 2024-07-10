@@ -1,6 +1,16 @@
 import { Breadcrumb } from "react-bootstrap";
 
-const CustomBreadcrumbs = ({ type, name, path }) => {
+interface CustomBreadcrumbsProps {
+  type: string;
+  name: string;
+  path: string;
+}
+
+const CustomBreadcrumbs: React.FC<CustomBreadcrumbsProps> = ({
+  type,
+  name,
+  path
+}) => {
   return (
     <Breadcrumb className="mb-3 mt-3">
       <Breadcrumb.Item href={path}>{type}</Breadcrumb.Item>

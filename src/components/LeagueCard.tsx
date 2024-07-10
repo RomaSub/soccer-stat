@@ -2,7 +2,13 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import getRoutes from "../routes";
 
-const LeagueCard = ({ leagueName, country, id }) => {
+interface LeagueCardProps {
+  leagueName: string;
+  country: string;
+  id: number;
+}
+
+const LeagueCard: React.FC<LeagueCardProps> = ({ leagueName, country, id }) => {
   return (
     <Card
       className="mb-3 text-decoration-none"

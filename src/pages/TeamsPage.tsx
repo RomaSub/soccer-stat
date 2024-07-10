@@ -5,6 +5,11 @@ import CustomSpinner from "../components/Spinner.tsx";
 import { Col, Container, Row } from "react-bootstrap";
 import { useState } from "react";
 
+interface Team {
+  name: string;
+  crest: string;
+}
+
 const Teams = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading } = getTeams({});
@@ -12,7 +17,7 @@ const Teams = () => {
   if (isLoading) return <CustomSpinner />;
 
   const filteredTeams = searchTerm
-    ? data.teams.filter(team =>
+    ? data.teams.filter((team: Team) =>
         team.name.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : data.teams;
@@ -21,7 +26,7 @@ const Teams = () => {
     <Container>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Row>
-        {filteredTeams.map((team, index) => (
+        {filteredTeams.map((team: Team, index: number) => (
           <Col key={index} md={2} xs={4}>
             <TeamsCard teamName={team.name} flag={team.crest} />
           </Col>
@@ -32,4 +37,3 @@ const Teams = () => {
 };
 
 export default Teams;
-//xs={12} md={6} lg={4}

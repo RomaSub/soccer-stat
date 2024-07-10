@@ -1,5 +1,6 @@
 setup:
 	npm ci
+	npm run prepare
 	npm run build
 
 start:
