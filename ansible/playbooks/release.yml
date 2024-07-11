@@ -26,8 +26,5 @@
         restart_policy: always
         ports:
           - "5173:5173"
+        command: "npm run dev"
 
-    - name: Setup and Start
-      community.docker.docker_container:
-        name: soccer-stat
-        command: "npm ci && npm run prepare && npm run build && npm run dev"
