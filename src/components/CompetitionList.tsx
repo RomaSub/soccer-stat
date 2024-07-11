@@ -2,8 +2,6 @@ import { Table } from "react-bootstrap";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import CustomPagination from "./Pagination.tsx";
-import { useState } from "react";
-import chunk from "lodash.chunk";
 
 interface Team {
   name: string;
@@ -31,6 +29,8 @@ interface Match {
 
 interface CompetitionListProps {
   matches: Match[];
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
 }
 
 const renderScore = (score: Score) => {
@@ -46,17 +46,21 @@ const renderScore = (score: Score) => {
   );
 };
 
-const CompetitionList = ({ matches }: CompetitionListProps) => {
+const CompetitionList = ({
+  matches,
+  currentPage,
+  setCurrentPage
+}: CompetitionListProps) => {
   const { t } = useTranslation();
-  const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 13;
-  const matchesChunk = chunk(matches, pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentPageMatches = matches.slice(startIndex, startIndex + pageSize);
 
   return (
     <>
       <Table hover>
         <tbody>
-          {matchesChunk[currentPage - 1]?.map((match: Match) => (
+          {currentPageMatches.map((match: Match) => (
             <tr key={match.id}>
               <td>{format(match.utcDate, "dd-MM-yyyy")}</td>
               <td>{format(match.utcDate, "HH:mm")}</td>

@@ -15,9 +15,11 @@ interface League {
 
 const Competitions = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, isLoading } = getCompetitions({});
+  const { data, isLoading, isError, status } = getCompetitions({});
 
   if (isLoading) return <CustomSpinner />;
+
+  if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
   const filteredCompetitions = searchTerm
     ? data.competitions.filter(

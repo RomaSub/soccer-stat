@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getCompetitionMatches } from "../services/footbalApi";
 import CustomSpinner from "../components/Spinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CompetitionList from "../components/CompetitionList";
 import DateFilter from "../components/DateFilter";
 import CustomBreadcrumbs from "../components/Breadcrumbs";
@@ -13,6 +13,7 @@ const CompetitionCalendar = () => {
   const { t } = useTranslation();
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const { id } = useParams();
 
   const { data, isLoading, isError, status } = getCompetitionMatches({
@@ -20,6 +21,10 @@ const CompetitionCalendar = () => {
     dateFrom,
     dateTo
   });
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [dateFrom, dateTo]);
 
   if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
@@ -39,7 +44,11 @@ const CompetitionCalendar = () => {
           setDateTo(to);
         }}
       />
-      <CompetitionList matches={data.matches} />
+      <CompetitionList
+        matches={data.matches}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </Container>
   );
 };
