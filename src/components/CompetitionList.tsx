@@ -3,10 +3,10 @@ import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import CustomPagination from "./Pagination.tsx";
 import { renderScoreApi4 } from "../utils/renderScore.ts";
-import { Match } from "../types/Match";
+import { MatchApi4 } from "../types/Api4";
 
 interface CompetitionListProps {
-  matches: Match[];
+  matches: MatchApi4[];
   currentPage: number;
   setCurrentPage: (page: number) => void;
 }
@@ -24,7 +24,7 @@ const CompetitionList = ({
     <>
       <Table hover>
         <tbody>
-          {currentPageMatches.map((match: Match) => (
+          {currentPageMatches.map((match: MatchApi4) => (
             <tr key={match.id}>
               <td>{format(match.utcDate, "dd-MM-yyyy")}</td>
               <td>{format(match.utcDate, "HH:mm")}</td>

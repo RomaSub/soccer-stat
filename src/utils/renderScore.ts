@@ -1,6 +1,7 @@
-import { Score } from "../types/Match";
+import { ScoreApi2 } from "../types/Api2";
+import { ScoreApi4 } from "../types/Api4";
 
-export const renderScoreApi2 = (score: Score): string => {
+export const renderScoreApi2 = (score: ScoreApi2): string => {
   const fullTimeScore =
     score.fullTime &&
     score.fullTime.homeTeam !== null &&
@@ -25,18 +26,7 @@ export const renderScoreApi2 = (score: Score): string => {
   return `${fullTimeScore} ${extraTimeScore} ${penaltiesTimeScore}`.trim();
 };
 
-interface Score4 {
-  fullTime: {
-    away: number | null;
-    home: number | null;
-  };
-  halfTime: {
-    away: number | null;
-    home: number | null;
-  };
-}
-
-export const renderScoreApi4 = (score: Score4): string => {
+export const renderScoreApi4 = (score: ScoreApi4): string => {
   const fullTimeScore =
     score.fullTime &&
     score.fullTime.home !== null &&

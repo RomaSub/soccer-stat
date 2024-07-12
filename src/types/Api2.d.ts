@@ -1,25 +1,25 @@
-export interface Competition {
+export interface CompetitionApi2 {
   id: number;
   name: string;
 }
 
-export interface Score {
-  fullTime: TimeScore | null;
-  extraTime: TimeScore | null;
-  penalties: TimeScore | null;
+export interface ScoreApi2 {
+  fullTime: TimeScoreApi2 | null;
+  extraTime: TimeScoreApi2 | null;
+  penalties: TimeScoreApi2 | null;
 }
 
-export interface TimeScore {
+export interface TimeScoreApi2 {
   homeTeam: number | null;
   awayTeam: number | null;
 }
 
-export interface Team {
+export interface TeamApi2 {
   id: number;
   name: string;
 }
 
-export interface Match {
+export interface MatchApi2 {
   id: number;
   competition: Competition;
   utcDate: string;

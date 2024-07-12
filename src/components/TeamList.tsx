@@ -2,11 +2,11 @@ import { Button, Col, Row, Table } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { renderScoreApi2 } from "../utils/renderScore";
 import { format } from "date-fns";
-import { Match } from "../types/Match";
+import { MatchApi2 } from "../types/Api2";
 import CustomPagination from "./Pagination";
 
 interface TeamListProps {
-  matches: Match[];
+  matches: MatchApi2[];
   currentPage: number;
   setCurrentPage: (page: number) => void;
 }
@@ -22,7 +22,7 @@ const TeamList = ({ matches, currentPage, setCurrentPage }: TeamListProps) => {
       {currentPageMatches.length ? (
         <Table hover>
           <tbody>
-            {currentPageMatches.map((match: Match) => (
+            {currentPageMatches.map((match: MatchApi2) => (
               <tr key={match.id}>
                 <td>{format(new Date(match.utcDate), "dd-MM-yyyy")}</td>
                 <td>{format(new Date(match.utcDate), "HH:mm")}</td>
