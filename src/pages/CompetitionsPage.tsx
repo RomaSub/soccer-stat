@@ -3,7 +3,8 @@ import SearchBar from "../components/SearchBar";
 import LeagueCard from "../components/LeagueCard";
 import { getCompetitions } from "../services/footbalApi";
 import CustomSpinner from "../components/Spinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CustomPagination from "../components/Pagination";
 
 interface League {
   id: number;
@@ -16,9 +17,14 @@ interface League {
 const Competitions = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading, isError, status } = getCompetitions({});
+  const pageSize = 12;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   if (isLoading) return <CustomSpinner />;
-
   if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
   const filteredCompetitions = searchTerm
@@ -29,11 +35,17 @@ const Competitions = () => {
       )
     : data.competitions;
 
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentPageCompetitions = filteredCompetitions.slice(
+    startIndex,
+    startIndex + pageSize
+  );
+
   return (
     <Container>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Row>
-        {filteredCompetitions.map((league: League, index: number) => (
+        {currentPageCompetitions.map((league: League, index: number) => (
           <Col key={index} xs={12} md={6} lg={4}>
             <LeagueCard
               id={league.id}
@@ -43,6 +55,12 @@ const Competitions = () => {
           </Col>
         ))}
       </Row>
+      <CustomPagination
+        itemsCount={filteredCompetitions.length}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </Container>
   );
 };

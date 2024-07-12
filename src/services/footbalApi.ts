@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const footballApi = createApi({
   reducerPath: "footballApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api/v4",
+    baseUrl: "/api",
     prepareHeaders: headers => {
       const token = "34f93167f85e4ca78c205990c556569e";
       if (token) headers.set("X-Auth-Token", token);
@@ -12,17 +12,21 @@ export const footballApi = createApi({
   }),
   endpoints: builder => ({
     getTeams: builder.query({
-      query: () => "teams"
+      query: () => "v2/teams"
     }),
     getTeamMatches: builder.query({
-      query: id => `teams/${id}/matches`
+      query: ({ id, dateFrom, dateTo }) => {
+        let url = `v2/teams/${id}/matches`;
+        if (dateFrom && dateTo) url += `?dateFrom=${dateFrom}&dateTo=${dateTo}`;
+        return url;
+      }
     }),
     getCompetitions: builder.query({
-      query: () => "competitions"
+      query: () => "v4/competitions"
     }),
     getCompetitionMatches: builder.query({
       query: ({ id, dateFrom, dateTo }) => {
-        let url = `competitions/${id}/matches`;
+        let url = `v4/competitions/${id}/matches`;
         if (dateFrom && dateTo) url += `?dateFrom=${dateFrom}&dateTo=${dateTo}`;
         return url;
       }

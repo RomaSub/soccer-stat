@@ -5,14 +5,12 @@ interface DateFilterProps {
   onDateChange: (from: string, to: string) => void;
 }
 
-const DateFilter: React.FC<DateFilterProps> = ({ onDateChange }) => {
-  const [dateFrom, setDateFrom] = useState("");
-  const [dateTo, setDateTo] = useState("");
+const DateFilter = ({ onDateChange }: DateFilterProps) => {
+  const [dateFrom, setDateFrom] = useState<string>("");
+  const [dateTo, setDateTo] = useState<string>("");
 
   useEffect(() => {
-    if (dateFrom && dateTo) {
-      onDateChange(dateFrom, dateTo);
-    }
+    if (dateFrom && dateTo) onDateChange(dateFrom, dateTo);
   }, [dateFrom, dateTo, onDateChange]);
 
   return (

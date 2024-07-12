@@ -6,11 +6,7 @@ interface CustomBreadcrumbsProps {
   path: string;
 }
 
-const CustomBreadcrumbs: React.FC<CustomBreadcrumbsProps> = ({
-  type,
-  name,
-  path
-}) => {
+const CustomBreadcrumbs = ({ type, name, path }: CustomBreadcrumbsProps) => {
   return (
     <Breadcrumb className="mb-3 mt-3">
       <Breadcrumb.Item href={path}>{type}</Breadcrumb.Item>

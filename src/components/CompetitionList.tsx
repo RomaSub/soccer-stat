@@ -2,50 +2,14 @@ import { Table } from "react-bootstrap";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import CustomPagination from "./Pagination.tsx";
-
-interface Team {
-  name: string;
-}
-
-interface Score {
-  fullTime: {
-    home: number | null;
-    away: number | null;
-  };
-  halfTime: {
-    home: number | null;
-    away: number | null;
-  };
-}
-
-interface Match {
-  id: number;
-  utcDate: string;
-  status: string;
-  homeTeam: Team;
-  awayTeam: Team;
-  score: Score;
-}
+import { renderScoreApi4 } from "../utils/renderScore.ts";
+import { Match } from "../types/Match";
 
 interface CompetitionListProps {
   matches: Match[];
   currentPage: number;
   setCurrentPage: (page: number) => void;
 }
-
-const renderScore = (score: Score) => {
-  if (score.fullTime.home === null) return "";
-
-  const fullTimeScore = `${score.fullTime.home}:${score.fullTime.away}`;
-  const halfTimeScore = `(${score.halfTime.home}:${score.halfTime.away})`;
-
-  return (
-    <>
-      {fullTimeScore} {halfTimeScore}
-    </>
-  );
-};
-
 const CompetitionList = ({
   matches,
   currentPage,
@@ -66,7 +30,7 @@ const CompetitionList = ({
               <td>{format(match.utcDate, "HH:mm")}</td>
               <td>{t(`matchStatus.${match.status}`)}</td>
               <td>{`${match.homeTeam.name} — ${match.awayTeam.name}`}</td>
-              <td>{renderScore(match.score)}</td>
+              <td>{renderScoreApi4(match.score)}</td>
             </tr>
           ))}
         </tbody>

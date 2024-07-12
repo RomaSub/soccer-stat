@@ -15,7 +15,9 @@ const ru = {
     competitions: "Лиги",
     teams: "Команды",
     matches: "Матчи",
-    search: "Поиск"
+    search: "Поиск",
+    nothing: "Ничего не найденo",
+    resetBtn: "Сбросить дату"
   }
 };
 

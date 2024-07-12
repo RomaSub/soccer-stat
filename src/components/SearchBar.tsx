@@ -6,7 +6,7 @@ interface SearchBarProps {
   setSearchTerm: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm }) => {
+const SearchBar = ({ searchTerm, setSearchTerm }: SearchBarProps) => {
   const { t } = useTranslation();
 
   return (

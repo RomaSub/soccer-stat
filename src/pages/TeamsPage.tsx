@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 interface Team {
   name: string;
-  crest: string;
+  crestUrl: string;
   id: number;
 }
 
@@ -43,7 +43,7 @@ const Teams = () => {
       <Row>
         {currentPageTeams.map((team: Team, index: number) => (
           <Col key={index} md={2} xs={4}>
-            <TeamsCard teamName={team.name} id={team.id} flag={team.crest} />
+            <TeamsCard teamName={team.name} id={team.id} flag={team.crestUrl} />
           </Col>
         ))}
       </Row>

@@ -8,12 +8,12 @@ interface TeamsCardProps {
   id: number;
 }
 
-const TeamsCard: React.FC<TeamsCardProps> = ({ teamName, flag, id }) => {
+const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
   return (
     <Card
-      className="mb-3 text-decoration-none"
       as={Link}
       to={getRoutes.teamCalendarPagePath(id)}
+      className="mb-3 text-decoration-none"
     >
       <Card.Body className="text-center  ">
         <Card.Title>{teamName}</Card.Title>
@@ -24,3 +24,5 @@ const TeamsCard: React.FC<TeamsCardProps> = ({ teamName, flag, id }) => {
 };
 
 export default TeamsCard;
+//as={Link}
+//to={getRoutes.teamCalendarPagePath(id)}

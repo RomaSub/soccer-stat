@@ -8,7 +8,7 @@ interface LeagueCardProps {
   id: number;
 }
 
-const LeagueCard: React.FC<LeagueCardProps> = ({ leagueName, country, id }) => {
+const LeagueCard = ({ leagueName, country, id }: LeagueCardProps) => {
   return (
     <Card
       className="mb-3 text-decoration-none"

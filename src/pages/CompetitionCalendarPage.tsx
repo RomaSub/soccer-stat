@@ -14,6 +14,7 @@ const CompetitionCalendar = () => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [teamName, setTeamName] = useState<string>("");
   const { id } = useParams();
 
   const { data, isLoading, isError, status } = getCompetitionMatches({
@@ -26,15 +27,22 @@ const CompetitionCalendar = () => {
     setCurrentPage(1);
   }, [dateFrom, dateTo]);
 
+  useEffect(() => {
+    if (data && data.matches.length > 0) {
+      setTeamName(data.matches[0].homeTeam.name);
+    }
+  }, [data]);
+
   if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
   if (isLoading) return <CustomSpinner />;
+  console.log(data);
 
   return (
     <Container>
       <CustomBreadcrumbs
         type={t("competitions")}
-        name={data.competition.name}
+        name={teamName}
         path={getRoutes.competitionsPagePath()}
       />
       <h3 className="mb-3">{t("matches")}</h3>
