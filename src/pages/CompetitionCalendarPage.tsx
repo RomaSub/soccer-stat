@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getCompetitionMatches } from "../services/footbalApi";
 import CustomSpinner from "../components/Spinner";
@@ -14,7 +14,7 @@ const CompetitionCalendar = () => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [teamName, setTeamName] = useState<string>("");
+  const { state } = useLocation();
   const { id } = useParams();
 
   const { data, isLoading, isError, status } = getCompetitionMatches({
@@ -27,12 +27,6 @@ const CompetitionCalendar = () => {
     setCurrentPage(1);
   }, [dateFrom, dateTo]);
 
-  useEffect(() => {
-    if (data && data.matches.length > 0) {
-      setTeamName(data.matches[0].homeTeam.name);
-    }
-  }, [data]);
-
   if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
   if (isLoading) return <CustomSpinner />;
@@ -41,7 +35,7 @@ const CompetitionCalendar = () => {
     <Container>
       <CustomBreadcrumbs
         type={t("competitions")}
-        name={teamName}
+        name={state.leagueName}
         path={getRoutes.competitionsPagePath()}
       />
       <h3 className="mb-3">{t("matches")}</h3>

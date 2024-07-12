@@ -11,11 +11,13 @@ const Header = () => {
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     document.body.setAttribute("data-bs-theme", newTheme);
+    document.body.classList.remove(theme === "dark" ? "bg-dark" : "bg-light");
+    document.body.classList.add(newTheme === "dark" ? "bg-dark" : "bg-light");
     setTheme(newTheme);
   };
 
   return (
-    <Navbar expand="lg" className="shadow-sm">
+    <Navbar expand="sm" className="shadow-sm">
       <Container>
         <Navbar.Brand>Что-то</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

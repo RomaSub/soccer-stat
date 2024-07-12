@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import getRoutes from "../routes";
 
 interface TeamsCardProps {
@@ -9,11 +9,19 @@ interface TeamsCardProps {
 }
 
 const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(getRoutes.teamCalendarPagePath(id), {
+      state: { teamName }
+    });
+  };
+
   return (
     <Card
-      as={Link}
-      to={getRoutes.teamCalendarPagePath(id)}
       className="mb-3 text-decoration-none border"
+      onClick={handleClick}
+      style={{ cursor: "pointer " }}
     >
       <Card.Body className="text-center  ">
         <Card.Title>{teamName}</Card.Title>

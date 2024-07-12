@@ -5,6 +5,7 @@ import { getCompetitions } from "../services/footbalApi";
 import CustomSpinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import CustomPagination from "../components/Pagination";
+import getChunks from "../utils/getChunks";
 
 interface League {
   id: number;
@@ -35,17 +36,17 @@ const Competitions = () => {
       )
     : data.competitions;
 
-  const startIndex = (currentPage - 1) * pageSize;
-  const currentPageCompetitions = filteredCompetitions.slice(
-    startIndex,
-    startIndex + pageSize
+  const competitionsChunks = getChunks<League>(
+    filteredCompetitions,
+    currentPage,
+    pageSize
   );
 
   return (
     <Container>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Row>
-        {currentPageCompetitions.map((league: League, index: number) => (
+        {competitionsChunks.map((league: League, index: number) => (
           <Col key={index} xs={12} md={6} lg={4}>
             <LeagueCard
               id={league.id}

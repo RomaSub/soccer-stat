@@ -5,6 +5,7 @@ export const footballApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "/api",
     prepareHeaders: headers => {
+      //const token = import.meta.env.VITE_API_FOOTBALL_TOKEN;
       const token = "34f93167f85e4ca78c205990c556569e";
       if (token) headers.set("X-Auth-Token", token);
       return headers;

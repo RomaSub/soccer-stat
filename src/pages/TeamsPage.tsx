@@ -5,6 +5,7 @@ import CustomSpinner from "../components/Spinner.tsx";
 import CustomPagination from "../components/Pagination.tsx";
 import { Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import getChunks from "../utils/getChunks.ts";
 
 interface Team {
   name: string;
@@ -31,18 +32,14 @@ const Teams = () => {
       )
     : data.teams;
 
-  const startIndex = (currentPage - 1) * pageSize;
-  const currentPageTeams = filteredTeams.slice(
-    startIndex,
-    startIndex + pageSize
-  );
+  const teamsChunks = getChunks<Team>(filteredTeams, currentPage, pageSize);
 
   return (
     <Container>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Row>
-        {currentPageTeams.map((team: Team, index: number) => (
-          <Col key={index} md={2} xs={4}>
+        {teamsChunks.map((team: Team, index: number) => (
+          <Col key={index} md={4} xs={6} lg={2}>
             <TeamsCard teamName={team.name} id={team.id} flag={team.crestUrl} />
           </Col>
         ))}

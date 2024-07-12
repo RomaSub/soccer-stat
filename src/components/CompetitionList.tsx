@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import CustomPagination from "./Pagination.tsx";
 import { renderScoreApi4 } from "../utils/renderScore.ts";
 import { MatchApi4 } from "../types/Api4";
+import getChunks from "../utils/getChunks.ts";
 
 interface CompetitionListProps {
   matches: MatchApi4[];
@@ -17,14 +18,14 @@ const CompetitionList = ({
 }: CompetitionListProps) => {
   const { t } = useTranslation();
   const pageSize = 13;
-  const startIndex = (currentPage - 1) * pageSize;
-  const currentPageMatches = matches.slice(startIndex, startIndex + pageSize);
+
+  const competitionMatchesChunks = getChunks(matches, currentPage, pageSize);
 
   return (
     <>
       <Table hover>
         <tbody>
-          {currentPageMatches.map((match: MatchApi4) => (
+          {competitionMatchesChunks.map((match: MatchApi4) => (
             <tr key={match.id}>
               <td>{format(match.utcDate, "dd-MM-yyyy")}</td>
               <td>{format(match.utcDate, "HH:mm")}</td>
