@@ -13,7 +13,7 @@ const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
     <Card
       as={Link}
       to={getRoutes.teamCalendarPagePath(id)}
-      className="mb-3 text-decoration-none"
+      className="mb-3 text-decoration-none border"
     >
       <Card.Body className="text-center  ">
         <Card.Title>{teamName}</Card.Title>
@@ -24,5 +24,3 @@ const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
 };
 
 export default TeamsCard;
-//as={Link}
-//to={getRoutes.teamCalendarPagePath(id)}

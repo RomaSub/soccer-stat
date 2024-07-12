@@ -11,7 +11,7 @@ interface LeagueCardProps {
 const LeagueCard = ({ leagueName, country, id }: LeagueCardProps) => {
   return (
     <Card
-      className="mb-3 text-decoration-none"
+      className="mb-3 text-decoration-none border"
       as={Link}
       to={getRoutes.competitionCalendarPagePath(id)}
     >

@@ -9,7 +9,7 @@ const ru = {
       POSTPONED: "Отложен",
       SUSPENDED: "Приостановлен",
       CANCELED: "Отменен",
-      TIMED: "Приурочено"
+      TIMED: "Назначен"
     },
     notFound: "Страница не найдена",
     competitions: "Лиги",
@@ -17,7 +17,8 @@ const ru = {
     matches: "Матчи",
     search: "Поиск",
     nothing: "Ничего не найденo",
-    resetBtn: "Сбросить дату"
+    resetBtn: "Сбросить дату",
+    darkTheme: "Темная тема"
   }
 };
 

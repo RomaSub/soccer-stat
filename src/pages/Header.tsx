@@ -1,13 +1,21 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, Form } from "react-bootstrap";
 import getRoutes from "../routes";
+import { useState } from "react";
 
 const Header = () => {
   const { t } = useTranslation();
+  const [theme, setTheme] = useState("dark");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    document.body.setAttribute("data-bs-theme", newTheme);
+    setTheme(newTheme);
+  };
 
   return (
-    <Navbar bg="white" expand="lg" className="shadow-sm">
+    <Navbar expand="lg" className="shadow-sm">
       <Container>
         <Navbar.Brand>Что-то</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -20,6 +28,15 @@ const Header = () => {
               {t("teams")}
             </Nav.Link>
           </Nav>
+          <Form>
+            <Form.Check
+              type="switch"
+              id="theme-switch"
+              onChange={toggleTheme}
+              checked={theme === "dark"}
+              label={t("darkTheme")}
+            />
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

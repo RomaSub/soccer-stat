@@ -36,7 +36,6 @@ const CompetitionCalendar = () => {
   if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
   if (isLoading) return <CustomSpinner />;
-  console.log(data);
 
   return (
     <Container>
