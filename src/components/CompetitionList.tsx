@@ -26,11 +26,10 @@ const CompetitionList = ({
       {competitionMatchesChunks.length === 0 && (
         <div className="text-center mt-4 mb-3">{t("noMatches")}</div>
       )}
-
-      <Table hover className="border">
+      <Table hover responsive className="border">
         <tbody>
           {competitionMatchesChunks.map((match: MatchApi4) => (
-            <tr key={match.id}>
+            <tr className="text-nowrap" key={match.id}>
               <td>{format(match.utcDate, "dd-MM-yyyy")}</td>
               <td>{format(match.utcDate, "HH:mm")}</td>
               <td>{t(`matchStatus.${match.status}`)}</td>

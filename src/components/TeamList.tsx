@@ -23,12 +23,12 @@ const TeamList = ({ matches, currentPage, setCurrentPage }: TeamListProps) => {
       {teamMatchesChunks.length === 0 && (
         <div className="text-center mt-4 mb-3">{t("noMatches")}</div>
       )}
-      <Table hover className="border">
+      <Table hover responsive className="border">
         <tbody>
           {teamMatchesChunks.map((match: MatchApi2) => (
-            <tr key={match.id}>
-              <td>{format(new Date(match.utcDate), "dd-MM-yyyy")}</td>
-              <td>{format(new Date(match.utcDate), "HH:mm")}</td>
+            <tr className="text-nowrap" key={match.id}>
+              <td>{format(match.utcDate, "dd-MM-yyyy")}</td>
+              <td>{format(match.utcDate, "HH:mm")}</td>
               <td>{t(`matchStatus.${match.status}`)}</td>
               <td>{`${match.homeTeam.name} — ${match.awayTeam.name}`}</td>
               <td>{renderScoreApi2(match.score)}</td>

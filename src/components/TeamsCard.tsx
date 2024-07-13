@@ -21,11 +21,14 @@ const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
     <Card
       className="mb-3 text-decoration-none border"
       onClick={handleClick}
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", height: "250px" }}
     >
-      <Card.Body className="text-center  ">
+      <Card.Body className="text-center d-flex flex-column justify-content-center align-items-center">
         <Card.Title>{teamName}</Card.Title>
-        <Card.Img variant="top" src={flag} />
+        <Card.Img
+          src={flag}
+          style={{ objectFit: "contain", maxHeight: "150px" }}
+        />
       </Card.Body>
     </Card>
   );
