@@ -6,7 +6,7 @@ const NotFound = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-5">
       <h1>404</h1>
       <Link
         className="text-decoration-none"

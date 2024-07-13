@@ -10,12 +10,12 @@ const DateFilter = ({ onDateChange }: DateFilterProps) => {
   const [dateTo, setDateTo] = useState<string>("");
 
   useEffect(() => {
-    if (dateFrom && dateTo) onDateChange(dateFrom, dateTo);
+    onDateChange(dateFrom, dateTo);
   }, [dateFrom, dateTo, onDateChange]);
 
   return (
     <Row>
-      <Col md={3} className="mb-3">
+      <Col sm={3} className="mb-3">
         <Form.Group>
           <Form.Control
             type="date"
@@ -24,7 +24,7 @@ const DateFilter = ({ onDateChange }: DateFilterProps) => {
           />
         </Form.Group>
       </Col>
-      <Col md={3} className="mb-3">
+      <Col sm={3} className="mb-3">
         <Form.Group>
           <Form.Control
             type="date"

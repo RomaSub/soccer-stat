@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <Navbar expand="sm" className="shadow-sm">
       <Container>
-        <Navbar.Brand>Что-то</Navbar.Brand>
+        <Navbar.Brand>Soccer-stat</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

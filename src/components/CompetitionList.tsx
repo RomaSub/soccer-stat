@@ -23,7 +23,11 @@ const CompetitionList = ({
 
   return (
     <>
-      <Table hover>
+      {competitionMatchesChunks.length === 0 && (
+        <div className="text-center mt-4 mb-3">{t("noMatches")}</div>
+      )}
+
+      <Table hover className="border">
         <tbody>
           {competitionMatchesChunks.map((match: MatchApi4) => (
             <tr key={match.id}>

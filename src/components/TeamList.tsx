@@ -20,7 +20,10 @@ const TeamList = ({ matches, currentPage, setCurrentPage }: TeamListProps) => {
 
   return (
     <>
-      <Table hover>
+      {teamMatchesChunks.length === 0 && (
+        <div className="text-center mt-4 mb-3">{t("noMatches")}</div>
+      )}
+      <Table hover className="border">
         <tbody>
           {teamMatchesChunks.map((match: MatchApi2) => (
             <tr key={match.id}>

@@ -17,6 +17,7 @@ const ru = {
     matches: "Матчи",
     search: "Поиск",
     nothing: "Ничего не найденo",
+    noMatches: "Матчей по этим датам не существует",
     resetBtn: "Сбросить дату",
     darkTheme: "Темная тема"
   }

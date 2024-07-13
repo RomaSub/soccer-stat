@@ -21,7 +21,7 @@ const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
     <Card
       className="mb-3 text-decoration-none border"
       onClick={handleClick}
-      style={{ cursor: "pointer " }}
+      style={{ cursor: "pointer" }}
     >
       <Card.Body className="text-center  ">
         <Card.Title>{teamName}</Card.Title>
