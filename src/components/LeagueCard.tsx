@@ -21,7 +21,7 @@ const LeagueCard = ({ leagueName, country, id }: LeagueCardProps) => {
     <Card
       className="mb-3 text-decoration-none border"
       onClick={handleClick}
-      style={{ cursor: "pointer " }}
+      style={{ cursor: "pointer" }}
     >
       <Card.Body className="text-center text-nowrap">
         <Card.Title>{leagueName}</Card.Title>

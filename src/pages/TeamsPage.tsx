@@ -1,11 +1,11 @@
 import { getTeams } from "../services/footbalApi.ts";
-import TeamsCard from "../components/TeamsCard.tsx";
+import TeamCard from "../components/TeamCard.tsx";
 import SearchBar from "../components/SearchBar.tsx";
-import CustomSpinner from "../components/Spinner.tsx";
 import CustomPagination from "../components/Pagination.tsx";
 import { Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import getChunks from "../utils/getChunks.ts";
+import TeamsPlaceholder from "../components/placeholders/TeamsPagePlaceholder.tsx";
 
 interface Team {
   name: string;
@@ -23,8 +23,8 @@ const Teams = () => {
     setCurrentPage(1);
   }, [searchTerm]);
 
+  if (isLoading) return <TeamsPlaceholder pageSize={pageSize} />;
   if (isError) return <div>{`статус ошибки: ${status}`}</div>;
-  if (isLoading) return <CustomSpinner />;
 
   const filteredTeams = searchTerm
     ? data.teams.filter((team: Team) =>
@@ -40,7 +40,7 @@ const Teams = () => {
       <Row>
         {teamsChunks.map((team: Team, index: number) => (
           <Col key={index} md={4} xs={6} lg={2}>
-            <TeamsCard teamName={team.name} id={team.id} flag={team.crestUrl} />
+            <TeamCard teamName={team.name} id={team.id} flag={team.crestUrl} />
           </Col>
         ))}
       </Row>

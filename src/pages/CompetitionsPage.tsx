@@ -2,10 +2,10 @@ import { Container, Row, Col } from "react-bootstrap";
 import SearchBar from "../components/SearchBar";
 import LeagueCard from "../components/LeagueCard";
 import { getCompetitions } from "../services/footbalApi";
-import CustomSpinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import CustomPagination from "../components/Pagination";
 import getChunks from "../utils/getChunks";
+import CompetitionsPlaceholder from "../components/placeholders/CompetitionsPagePlaceholders";
 
 interface League {
   id: number;
@@ -25,7 +25,7 @@ const Competitions = () => {
     setCurrentPage(1);
   }, [searchTerm]);
 
-  if (isLoading) return <CustomSpinner />;
+  if (isLoading) return <CompetitionsPlaceholder pageSize={pageSize} />;
   if (isError) return <div>{`статус ошибки: ${status}`}</div>;
 
   const filteredCompetitions = searchTerm

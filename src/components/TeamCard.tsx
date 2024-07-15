@@ -2,13 +2,13 @@ import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import getRoutes from "../routes";
 
-interface TeamsCardProps {
+interface TeamCardProps {
   teamName: string;
   flag: string;
   id: number;
 }
 
-const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
+const TeamCard = ({ teamName, flag, id }: TeamCardProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -34,4 +34,4 @@ const TeamsCard = ({ teamName, flag, id }: TeamsCardProps) => {
   );
 };
 
-export default TeamsCard;
+export default TeamCard;
