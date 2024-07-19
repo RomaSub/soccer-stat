@@ -1,19 +1,24 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Nav, Navbar, Container, Form } from "react-bootstrap";
+import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import getRoutes from "../routes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { t } = useTranslation();
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "dark"
+  );
+
+  useEffect(() => {
+    document.body.setAttribute("data-bs-theme", theme);
+    document.body.classList.remove(theme === "dark" ? "bg-light" : "bg-dark");
+    document.body.classList.add(theme === "dark" ? "bg-dark" : "bg-light");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    document.body.setAttribute("data-bs-theme", newTheme);
-    document.body.classList.remove(theme === "dark" ? "bg-dark" : "bg-light");
-    document.body.classList.add(newTheme === "dark" ? "bg-dark" : "bg-light");
-    setTheme(newTheme);
+    setTheme(prevTheme => (prevTheme === "dark" ? "light" : "dark"));
   };
 
   return (
@@ -30,15 +35,13 @@ const Header = () => {
               {t("teams")}
             </Nav.Link>
           </Nav>
-          <Form>
-            <Form.Check
-              type="switch"
-              id="theme-switch"
-              onChange={toggleTheme}
-              checked={theme === "dark"}
-              label={t("darkTheme")}
-            />
-          </Form>
+          <Button variant={theme} onClick={toggleTheme}>
+            {theme === "dark" ? (
+              <i className="bi bi-moon-stars-fill"></i>
+            ) : (
+              <i className="bi bi-sun"></i>
+            )}
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
