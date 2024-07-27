@@ -17,20 +17,12 @@ const DateFilter = ({ onDateChange }: DateFilterProps) => {
     <Row>
       <Col sm={3} className="mb-3">
         <Form.Group>
-          <Form.Control
-            type="date"
-            value={dateFrom}
-            onChange={e => setDateFrom(e.target.value)}
-          />
+          <Form.Control type="date" value={dateFrom} onChange={e => setDateFrom(e.target.value)} />
         </Form.Group>
       </Col>
       <Col sm={3} className="mb-3">
         <Form.Group>
-          <Form.Control
-            type="date"
-            value={dateTo}
-            onChange={e => setDateTo(e.target.value)}
-          />
+          <Form.Control type="date" value={dateTo} onChange={e => setDateTo(e.target.value)} />
         </Form.Group>
       </Col>
     </Row>

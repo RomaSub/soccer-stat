@@ -35,12 +35,8 @@ export const footballApi = createApi({
   })
 });
 
-const {
-  useGetTeamsQuery,
-  useGetCompetitionsQuery,
-  useGetCompetitionMatchesQuery,
-  useGetTeamMatchesQuery
-} = footballApi;
+const { useGetTeamsQuery, useGetCompetitionsQuery, useGetCompetitionMatchesQuery, useGetTeamMatchesQuery } =
+  footballApi;
 
 export {
   useGetTeamsQuery as getTeams,

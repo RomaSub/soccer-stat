@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import getRoutes from "../routes";
 import Header from "./Header";
 import NotFound from "./NotFoundPage";
@@ -20,21 +15,10 @@ const App = () => {
           <Header />
 
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Navigate to={getRoutes.competitionsPagePath()} replace />
-              }
-            />
+            <Route path="/" element={<Navigate to={getRoutes.competitionsPagePath()} replace />} />
             <Route path={getRoutes.teamsPagePath()} element={<Teams />} />
-            <Route
-              path={getRoutes.competitionsPagePath()}
-              element={<Competitions />}
-            />
-            <Route
-              path="/competition/:id"
-              element={<CompetitionCalendarPage />}
-            />
+            <Route path={getRoutes.competitionsPagePath()} element={<Competitions />} />
+            <Route path="/competition/:id" element={<CompetitionCalendarPage />} />
             <Route path="/team/:id" element={<TeamCalendarPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

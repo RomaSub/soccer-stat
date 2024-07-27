@@ -6,6 +6,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import getChunks from "../utils/getChunks.ts";
 import TeamsPlaceholder from "../components/placeholders/TeamsPagePlaceholder.tsx";
+import ErrorPage from "./ErrorPage.tsx";
 
 interface Team {
   name: string;
@@ -15,7 +16,7 @@ interface Team {
 
 const Teams = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, isLoading, isError, status } = getTeams({});
+  const { data, isLoading, isError, error } = getTeams({});
   const pageSize = 12;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,12 +25,10 @@ const Teams = () => {
   }, [searchTerm]);
 
   if (isLoading) return <TeamsPlaceholder pageSize={pageSize} />;
-  if (isError) return <div>{`статус ошибки: ${status}`}</div>;
+  if (isError) return <ErrorPage error={error} />;
 
   const filteredTeams = searchTerm
-    ? data.teams.filter((team: Team) =>
-        team.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    ? data.teams.filter((team: Team) => team.name.toLowerCase().includes(searchTerm.toLowerCase()))
     : data.teams;
 
   const teamsChunks = getChunks<Team>(filteredTeams, currentPage, pageSize);

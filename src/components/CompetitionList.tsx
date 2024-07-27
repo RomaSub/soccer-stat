@@ -11,11 +11,7 @@ interface CompetitionListProps {
   currentPage: number;
   setCurrentPage: (page: number) => void;
 }
-const CompetitionList = ({
-  matches,
-  currentPage,
-  setCurrentPage
-}: CompetitionListProps) => {
+const CompetitionList = ({ matches, currentPage, setCurrentPage }: CompetitionListProps) => {
   const { t } = useTranslation();
   const pageSize = 13;
 
@@ -23,9 +19,7 @@ const CompetitionList = ({
 
   return (
     <>
-      {competitionMatchesChunks.length === 0 && (
-        <div className="text-center mt-4 mb-3">{t("noMatches")}</div>
-      )}
+      {competitionMatchesChunks.length === 0 && <div className="text-center mt-4 mb-3">{t("noMatches")}</div>}
       <Table hover responsive className="border">
         <tbody>
           {competitionMatchesChunks.map((match: MatchApi4) => (

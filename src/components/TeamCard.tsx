@@ -25,10 +25,7 @@ const TeamCard = ({ teamName, flag, id }: TeamCardProps) => {
     >
       <Card.Body className="text-center d-flex flex-column justify-content-center align-items-center">
         <Card.Title>{teamName}</Card.Title>
-        <Card.Img
-          src={flag}
-          style={{ objectFit: "contain", maxHeight: "150px" }}
-        />
+        <Card.Img src={flag} style={{ objectFit: "contain", maxHeight: "150px" }} />
       </Card.Body>
     </Card>
   );

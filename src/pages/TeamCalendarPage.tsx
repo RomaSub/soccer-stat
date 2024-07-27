@@ -8,6 +8,7 @@ import CustomBreadcrumbs from "../components/Breadcrumbs";
 import CustomSpinner from "../components/Spinner";
 import DateFilter from "../components/DateFilter";
 import TeamList from "../components/TeamList";
+import ErrorPage from "./ErrorPage";
 
 const TeamCalendar = () => {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ const TeamCalendar = () => {
   const { id } = useParams();
   const { state } = useLocation();
 
-  const { data, isLoading, isError, status } = getTeamMatches({
+  const { data, isLoading, isError, error } = getTeamMatches({
     id,
     dateFrom,
     dateTo
@@ -27,17 +28,12 @@ const TeamCalendar = () => {
     setCurrentPage(1);
   }, [dateFrom, dateTo]);
 
-  if (isError) return <div>{`статус ошибки: ${status}`}</div>;
-
+  if (isError) return <ErrorPage error={error} />;
   if (isLoading) return <CustomSpinner />;
 
   return (
     <Container>
-      <CustomBreadcrumbs
-        type={t("teams")}
-        name={state.teamName}
-        path={getRoutes.teamsPagePath()}
-      />
+      <CustomBreadcrumbs type={t("teams")} name={state.teamName} path={getRoutes.teamsPagePath()} />
       <h3 className="mb-3">{t("matches")}</h3>
 
       <DateFilter
@@ -46,11 +42,7 @@ const TeamCalendar = () => {
           setDateTo(to);
         }}
       />
-      <TeamList
-        matches={data.matches}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <TeamList matches={data.matches} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </Container>
   );
 };

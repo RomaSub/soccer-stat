@@ -8,10 +8,7 @@ const NotFound = () => {
   return (
     <div className="text-center mt-5">
       <h1>404</h1>
-      <Link
-        className="text-decoration-none"
-        to={getRoutes.competitionsPagePath()}
-      >
+      <Link className="text-decoration-none" to={getRoutes.competitionsPagePath()}>
         {t("notFound")}
       </Link>
     </div>

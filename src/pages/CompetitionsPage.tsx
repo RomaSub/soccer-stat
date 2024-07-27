@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CustomPagination from "../components/Pagination";
 import getChunks from "../utils/getChunks";
 import CompetitionsPlaceholder from "../components/placeholders/CompetitionsPagePlaceholders";
+import ErrorPage from "./ErrorPage";
 
 interface League {
   id: number;
@@ -17,7 +18,7 @@ interface League {
 
 const Competitions = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, isLoading, isError, status } = getCompetitions({});
+  const { data, isLoading, isError, error } = getCompetitions({});
   const pageSize = 12;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,7 +27,7 @@ const Competitions = () => {
   }, [searchTerm]);
 
   if (isLoading) return <CompetitionsPlaceholder pageSize={pageSize} />;
-  if (isError) return <div>{`статус ошибки: ${status}`}</div>;
+  if (isError) return <ErrorPage error={error} />;
 
   const filteredCompetitions = searchTerm
     ? data.competitions.filter(
@@ -36,11 +37,7 @@ const Competitions = () => {
       )
     : data.competitions;
 
-  const competitionsChunks = getChunks<League>(
-    filteredCompetitions,
-    currentPage,
-    pageSize
-  );
+  const competitionsChunks = getChunks<League>(filteredCompetitions, currentPage, pageSize);
 
   return (
     <Container>
@@ -48,11 +45,7 @@ const Competitions = () => {
       <Row>
         {competitionsChunks.map((league: League, index: number) => (
           <Col key={index} xs={12} md={6} lg={4}>
-            <LeagueCard
-              id={league.id}
-              leagueName={league.name}
-              country={league.area.name}
-            />
+            <LeagueCard id={league.id} leagueName={league.name} country={league.area.name} />
           </Col>
         ))}
       </Row>

@@ -11,6 +11,8 @@ const ru = {
       CANCELED: "Отменен",
       TIMED: "Назначен"
     },
+    errorStatus: "Ошибка со статусом",
+    return: "Вернуться",
     notFound: "Страница не найдена",
     competitions: "Лиги",
     teams: "Команды",

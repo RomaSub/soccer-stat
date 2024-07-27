@@ -6,9 +6,7 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   const { t } = useTranslation();
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "dark"
-  );
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
 
   useEffect(() => {
     document.body.setAttribute("data-bs-theme", theme);
@@ -36,11 +34,7 @@ const Header = () => {
             </Nav.Link>
           </Nav>
           <Button variant={theme} onClick={toggleTheme}>
-            {theme === "dark" ? (
-              <i className="bi bi-moon-stars-fill"></i>
-            ) : (
-              <i className="bi bi-sun"></i>
-            )}
+            {theme === "dark" ? <i className="bi bi-moon-stars-fill"></i> : <i className="bi bi-sun"></i>}
           </Button>
         </Navbar.Collapse>
       </Container>

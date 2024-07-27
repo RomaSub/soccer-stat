@@ -13,11 +13,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }: SearchBarProps) => {
     <Row>
       <Col md={4} className="mt-3 mb-3">
         <InputGroup>
-          <Form.Control
-            placeholder={t("search")}
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-          />
+          <Form.Control placeholder={t("search")} value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
           <InputGroup.Text>
             <i className="bi bi-search"></i>
           </InputGroup.Text>

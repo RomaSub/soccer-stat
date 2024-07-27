@@ -5,6 +5,5 @@ export default configureStore({
   reducer: {
     [footballApi.reducerPath]: footballApi.reducer
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(footballApi.middleware)
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(footballApi.middleware)
 });
